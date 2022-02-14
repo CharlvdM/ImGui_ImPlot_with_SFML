@@ -1,20 +1,25 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduction
+Immediate mode graphical user interfaces allow for fast prototyping and simple code. See the benefits of immediate mode GUIs here:
+- https://www.youtube.com/watch?v=LSRJ1jZq90k
+- https://www.youtube.com/watch?v=Z1qyvQsjK5Y&t=987s
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Dear ImGui is a widely used implementation of this concept. It has the benefits of retained GUIs (retained mode implementation) and the ease of development of immediate mode GUIs.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Overview 
+This repository is a demonstration of how to integrate Dear ImGui and ImPlot (to create plots) using SFML (handles the back-end, i.e. rendering and user inputs) into one project. 
+The ImGui, ImGui-SFML, SFML and ImPlot repositories are included as submodules. 
+Each of these, except for SFML, require no specific build process, meaning that the .cpp and .h files can be added directly into the project. Here CMake is used to integrate all the required files, thereby making this project IDE agnostic.
+SFML is meant to be installed, but it is preferred to include it as a submodule rather than installing it to the PC. Adding SFML using CMake can be tricky, see the `CMakeLists.txt` file.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+# Repository links
+- Dear ImGui: https://github.com/ocornut/imgui
+- ImGui-SFML: https://github.com/eliasdaler/imgui-sfml
+- SFML: https://github.com/SFML/SFML
+- ImPlot: https://github.com/epezent/implot
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Notes
+- A local copy of the ImGui repository is made because the imconfig.h file needs to be updated so that ImGui can be used with SFML (as explained in https://github.com/eliasdaler/imgui-sfml).
+- If you are not well versed with CMake, see https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/CMakeAndCatch2Demo
+
+Author: Charl van de Merwe  
+Date: 14 February 2022
