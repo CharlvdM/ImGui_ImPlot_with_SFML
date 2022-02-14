@@ -2,10 +2,6 @@
 	path = SFML
 	url = https://github.com/SFML/SFML.git
 	branch = master
-[submodule "imgui"]
-	path = imgui
-	url = https://github.com/ocornut/imgui.git
-	branch = master
 [submodule "imgui-sfml"]
 	path = imgui-sfml
 	url = https://github.com/eliasdaler/imgui-sfml.git
@@ -13,4 +9,8 @@
 [submodule "implot"]
 	path = implot
 	url = https://github.com/epezent/implot.git
+	branch = master
+[submodule "TE_imgui"]
+	path = TE_imgui
+	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_imgui
 	branch = master

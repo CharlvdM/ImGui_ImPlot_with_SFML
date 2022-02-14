@@ -17,7 +17,7 @@ add_subdirectory(SFML)
 
 
 ## imgui library
-set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/imgui)
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/TE_imgui)
 #set(IMGUI_DIR imgui) # This works too
 
 add_library(Imgui STATIC
