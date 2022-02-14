@@ -13,4 +13,4 @@
 [submodule "TE_imgui"]
 	path = TE_imgui
 	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_imgui
-	branch = master
+	branch = TE_master
