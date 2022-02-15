@@ -29,6 +29,12 @@ int main() {
     /// Initialize ImPlot
     ImPlot::CreateContext();
 
+    /// Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO &io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;   // Enable Docking
+
     while (window.isOpen()) {
         const auto start_time = std::chrono::high_resolution_clock::now();
 

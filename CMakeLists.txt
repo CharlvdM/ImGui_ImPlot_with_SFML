@@ -3,6 +3,8 @@ project(ImGuiAndImPlotWithSFML)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_compile_definitions(TE_GUI)
+
 if(MSVC)
     # set Visual Studio specific flags here
 else()
@@ -25,10 +27,13 @@ add_library(Imgui STATIC
     ${IMGUI_DIR}/imgui_demo.cpp 
     ${IMGUI_DIR}/imgui_draw.cpp 
     ${IMGUI_DIR}/imgui_tables.cpp 
-    ${IMGUI_DIR}/imgui_widgets.cpp)
-    
+    ${IMGUI_DIR}/imgui_widgets.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_win32.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_dx12.cpp)
+
 # See the difference between PUBLIC and PRIVATE: https://stackoverflow.com/questions/26037954/cmake-target-link-libraries-interface-dependencies/26038443#26038443?newreg=d5cc57e4b53c46958d317d60d0d3973e
 target_include_directories(Imgui PUBLIC ${IMGUI_DIR})
+target_include_directories(Imgui PUBLIC ${IMGUI_DIR}/backends)
 
 target_link_libraries(Imgui PUBLIC sfml-system sfml-window sfml-graphics sfml-audio sfml-network) # Give imgui access to SFML
 
@@ -66,3 +71,8 @@ target_link_libraries(GuiExe PUBLIC Imgui)
 target_link_libraries(GuiExe PUBLIC ImguiSFML)
 target_link_libraries(GuiExe PUBLIC sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 target_link_libraries(GuiExe PUBLIC Implot)
+
+## Win32 directx10 example GUI executable
+add_executable(Win32GuiExe example_win32_directx12/main.cpp)
+
+target_link_libraries(Win32GuiExe PUBLIC Imgui d3d12 d3dcompiler dxgi)
