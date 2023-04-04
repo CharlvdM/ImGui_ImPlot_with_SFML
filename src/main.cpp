@@ -1,4 +1,3 @@
-#include "imgui.h"
 #include "imgui-SFML.h"
 #include "implot.h"
 #include <SFML/Graphics.hpp>
@@ -9,7 +8,7 @@ namespace {
     constexpr std::chrono::milliseconds WINDOW_UPDATE_SPEED {20};
 
     sf::Clock sDeltaClock {};
-}
+} // namespace
 
 int main() {
 
@@ -17,14 +16,14 @@ int main() {
 
     /// Configure the GUI window
     ImVec2 win_size {1284.0F, 1024.0F};
-    sf::RenderWindow window(sf::VideoMode(static_cast<unsigned int>(win_size.x), static_cast<unsigned int>(win_size.y)), "",
-                            sf::Style::Default);
+    sf::Vector2u windowSizeVec {static_cast<unsigned int>(win_size.x), static_cast<unsigned int>(win_size.y)};
+    sf::RenderWindow window(sf::VideoMode {windowSizeVec}, "");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(30);
     window.setTitle(APPLICATION_NAME);
 
     /// Initialize SFML
-    ImGui::SFML::Init(window); // bind the ImGui library to SFML
+    static_cast<void>(ImGui::SFML::Init(window)); // bind the ImGui library to SFML
 
     /// Initialize ImPlot
     ImPlot::CreateContext();
@@ -33,7 +32,7 @@ int main() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;   // Enable Docking
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // Enable Docking
 
     while (window.isOpen()) {
         const auto start_time = std::chrono::high_resolution_clock::now();

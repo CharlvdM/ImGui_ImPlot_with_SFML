@@ -9,7 +9,7 @@ if(MSVC)
     # set Visual Studio specific flags here
 else()
     # GCC flags
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -Wextra -Wall -pedantic-errors -Wdouble-promotion -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-signedness -Wformat-truncation=2 -Wnull-dereference -Wimplicit-fallthrough=5 -Wmissing-include-dirs -Wunused-parameter -Wuninitialized -Wstrict-overflow -Wstringop-overflow=4 -Walloca -Wattribute-alias -Warray-bounds=2 -Wduplicated-branches -Wduplicated-cond -Wfloat-equal -Wshadow -Wcast-qual -Wcast-align=strict -Wconversion -Wlogical-op -Wmissing-declarations -Wnormalized -Wredundant-decls -Winline -Wvla")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -Wpessimizing-move -Wredundant-move -Wextra -Wall -Wdouble-promotion -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-signedness -Wformat-truncation=2 -Wnull-dereference -Wimplicit-fallthrough=5 -Wmissing-include-dirs -Wunused-parameter -Wuninitialized -Wstrict-overflow -Wstringop-overflow=4 -Walloca -Wattribute-alias -Warray-bounds=2 -Wduplicated-branches -Wduplicated-cond -Wfloat-equal -Wshadow -Wcast-qual -Wcast-align=strict -Wconversion -Wlogical-op -Wmissing-declarations -Wnormalized -Wredundant-decls -Wno-inline -Wvla")
 endif()
 
 ## SFML library
@@ -22,18 +22,30 @@ add_subdirectory(SFML)
 set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/TE_imgui)
 #set(IMGUI_DIR imgui) # This works too
 
-add_library(Imgui STATIC
+set(Imgui_sources
     ${IMGUI_DIR}/imgui.cpp
     ${IMGUI_DIR}/imgui_demo.cpp 
     ${IMGUI_DIR}/imgui_draw.cpp 
     ${IMGUI_DIR}/imgui_tables.cpp 
     ${IMGUI_DIR}/imgui_widgets.cpp
+)
+if(MSVC)
+    list(APPEND Imgui_sources
     ${IMGUI_DIR}/backends/imgui_impl_win32.cpp
     ${IMGUI_DIR}/backends/imgui_impl_dx12.cpp)
+endif()
+
+add_library(Imgui STATIC
+    ${Imgui_sources}
+)
+
+
 
 # See the difference between PUBLIC and PRIVATE: https://stackoverflow.com/questions/26037954/cmake-target-link-libraries-interface-dependencies/26038443#26038443?newreg=d5cc57e4b53c46958d317d60d0d3973e
 target_include_directories(Imgui PUBLIC ${IMGUI_DIR})
+if(MSVC)
 target_include_directories(Imgui PUBLIC ${IMGUI_DIR}/backends)
+endif()
 
 target_link_libraries(Imgui PUBLIC sfml-system sfml-window sfml-graphics sfml-audio sfml-network) # Give imgui access to SFML
 
@@ -73,6 +85,8 @@ target_link_libraries(GuiExe PUBLIC sfml-system sfml-window sfml-graphics sfml-a
 target_link_libraries(GuiExe PUBLIC Implot)
 
 ## Win32 directx10 example GUI executable
+if(MSVC)
 add_executable(Win32GuiExe example_win32_directx12/main.cpp)
-
 target_link_libraries(Win32GuiExe PUBLIC Imgui d3d12 d3dcompiler dxgi)
+endif()
+
