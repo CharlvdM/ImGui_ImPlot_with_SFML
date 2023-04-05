@@ -19,8 +19,8 @@ add_subdirectory(SFML)
 
 
 ## imgui library
-set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/TE_imgui)
-#set(IMGUI_DIR imgui) # This works too
+#set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/TE_imgui)
+set(IMGUI_DIR imgui) # This works too
 
 set(Imgui_sources
     ${IMGUI_DIR}/imgui.cpp
@@ -84,7 +84,7 @@ target_link_libraries(GuiExe PUBLIC ImguiSFML)
 target_link_libraries(GuiExe PUBLIC sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 target_link_libraries(GuiExe PUBLIC Implot)
 
-## Win32 directx10 example GUI executable
+## Win32 directx10 example GUI executable. Currently only works in Visual Studio (MSVC), not with GCC.
 if(MSVC)
 add_executable(Win32GuiExe example_win32_directx12/main.cpp)
 target_link_libraries(Win32GuiExe PUBLIC Imgui d3d12 d3dcompiler dxgi)
