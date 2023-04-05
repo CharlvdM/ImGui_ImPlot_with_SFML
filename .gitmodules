@@ -1,16 +1,16 @@
 [submodule "SFML"]
 	path = SFML
-	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_SFML
-	branch = pcc_dev
+	url = https://github.com/CharlvdM/CV_SFML.git
+	branch = CV_GitHub_updates
 [submodule "imgui"]
 	path = imgui
-	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_imgui
-	branch = pcc_dev
+	url = https://github.com/CharlvdM/CV_imgui.git
+	branch = CV_GitHub_updates
 [submodule "imgui-sfml"]
 	path = imgui-sfml
-	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_imgui-sfml
-	branch = pcc_dev
+	url = https://github.com/CharlvdM/CV_imgui-sfml.git
+	branch = CV_GitHub_updates
 [submodule "implot"]
 	path = implot
-	url = https://transnetengineering.visualstudio.com/RnDSharedRepositories/_git/TE_implot
-	branch = pcc_dev
+	url = https://github.com/CharlvdM/CV_implot.git
+	branch = CV_GitHub_updates
