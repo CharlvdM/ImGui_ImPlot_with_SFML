@@ -19,8 +19,8 @@ add_subdirectory(SFML)
 
 
 ## imgui library
-#set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/TE_imgui)
-set(IMGUI_DIR imgui) # This works too
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/imgui)
+#set(IMGUI_DIR imgui) # This works too
 
 set(Imgui_sources
     ${IMGUI_DIR}/imgui.cpp

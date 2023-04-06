@@ -18,7 +18,7 @@ int main() {
     ImVec2 win_size {1284.0F, 1024.0F};
     sf::Vector2u windowSizeVec {static_cast<unsigned int>(win_size.x), static_cast<unsigned int>(win_size.y)};
     sf::RenderWindow window(sf::VideoMode {windowSizeVec}, "");
-    window.setVerticalSyncEnabled(true);
+    //window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(30);
     window.setTitle(APPLICATION_NAME);
 
@@ -31,6 +31,8 @@ int main() {
     /// Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ImGuiIO &io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // Enable Docking
 
     while (window.isOpen()) {
         const auto start_time = std::chrono::high_resolution_clock::now();
